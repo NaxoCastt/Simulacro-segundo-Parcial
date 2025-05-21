@@ -15,6 +15,7 @@
         public function calcularPesoVagon(){
             $pesoBase = $this->calcularPesoVagon();
             $pesoActualPasajeros = $this->getCantActualPasajerosVagon() * $this->getPesoPromedioVagon();
+            $this->setPesoActualVagon($pesoActualPasajeros + $pesoBase);
             return $pesoBase + $pesoActualPasajeros;
         }
 
