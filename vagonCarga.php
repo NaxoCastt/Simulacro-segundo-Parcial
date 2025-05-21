@@ -49,6 +49,7 @@
         public function calcularPesoVagon(){
             $pesoBase = parent::calcularPesoVagon();
             $pesoFinal = $this->getPesoCargaVagCarga() + ($this->getPesoCargaVagCarga() * $this->getIndice());
+            $this->setPesoActualVagon($pesoFinal + $pesoBase);
             return $pesoFinal + $pesoBase;
         }
 
