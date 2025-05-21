@@ -12,7 +12,7 @@
             $this->largoVagon = $largoVagon;
             $this->anchoVagon = $anchoVagon;
             $this->pesoVacioVagon = $pesoVacioVagon;
-            $this->pesoActualVagon = $pesoActualVagon + $pesoVacioVagon;
+            $this->pesoActualVagon = $pesoVacioVagon;
         }
 
         public function calcularPesoVagon(){
