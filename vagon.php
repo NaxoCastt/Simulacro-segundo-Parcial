@@ -7,7 +7,7 @@
         private $pesoVacioVagon;
         private $pesoActualVagon;
 
-        public function __construct( $anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon, $pesoActualVagon){
+        public function __construct( $anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon){
             $this->anioInstalacionVagon = $anioInstalacionVagon;
             $this->largoVagon = $largoVagon;
             $this->anchoVagon = $anchoVagon;

@@ -9,11 +9,13 @@
             $this->pesoPromedioVagon = 50;
             $this->cantMaximaPasajerosVagon = $cantMaximaPasajerosVagon;
             $this->cantActualPasajerosVagon = $cantActualPasajerosVagon;
-            parent::__construct($anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon, ($this->cantActualPasajerosVagon * $this->pesoPromedioVagon));
+            parent::__construct($anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon);
         }
 
         public function calcularPesoVagon(){
-            return parent::calcularPesoVagon();
+            $pesoBase = $this->calcularPesoVagon();
+            $pesoActualPasajeros = $this->getCantActualPasajerosVagon() * $this->getPesoPromedioVagon();
+            return $pesoBase + $pesoActualPasajeros;
         }
 
         public function getCantMaximaPasajerosVagon() {return $this->cantMaximaPasajerosVagon;}

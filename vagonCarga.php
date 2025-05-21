@@ -3,17 +3,22 @@
 
         private $pesoMaximoVagcarga;
         private $pesoCargaVagCarga;
+        private $indice;
 
 
         public function __construct($anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon, $pesoMaximoVagcarga,  $pesoCargaVagCarga){
             $this->pesoMaximoVagcarga = $pesoMaximoVagcarga;
             $this->pesoCargaVagCarga = $pesoCargaVagCarga;
-            parent::__construct($anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon, ($this->pesoCargaVagCarga + ($this->pesoCargaVagCarga * 0.2)));
+            $this->indice = 0.2;
+            parent::__construct($anioInstalacionVagon,  $largoVagon,  $anchoVagon,  $pesoVacioVagon);
 
         }
 
         public function getPesoMaximoVagcarga() {return $this->pesoMaximoVagcarga;}
 
+        public function getIndice(){
+            return $this->indice;
+        }
 	    public function getPesoCargaVagCarga() {return $this->pesoCargaVagCarga;}
 
         public function setPesoMaximoVagcarga( $pesoMaximoVagcarga): void {$this->pesoMaximoVagcarga = $pesoMaximoVagcarga;}
@@ -31,10 +36,10 @@
 
             $bandera = false;
 
-            if( ($cantCarga + ($cantCarga * 0.2)) <= $this->getPesoMaximoVagcarga()){
+            if( ($cantCarga + ($cantCarga * $this->getIndice())) <= $this->getPesoMaximoVagcarga()){
 
                 $bandera = true;
-                parent::setPesoActualVagon(parent::getPesoActualVagon() +($cantCarga + ($cantCarga * 0.2)));
+                $this->setPesoActualVagon($this->calcularPesoVagon() +($cantCarga + ($cantCarga * $this->getIndice())));
                 $this->setPesoCargaVagCarga($this->getPesoCargaVagCarga() + $cantCarga);
             }
 
@@ -42,7 +47,9 @@
         }
 
         public function calcularPesoVagon(){
-            return parent::calcularPesoVagon();
+            $pesoBase = parent::calcularPesoVagon();
+            $pesoFinal = $this->getPesoCargaVagCarga() + ($this->getPesoCargaVagCarga() * $this->getIndice());
+            return $pesoFinal + $pesoBase;
         }
 
         public function verificacionCompleto(){
