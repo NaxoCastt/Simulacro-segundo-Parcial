@@ -101,7 +101,7 @@
 
             $peso = 0;
 
-            if ( empty($this->getMaxVagonesFormacion()) == false){
+            if ( (empty($this->getColecVagonFormacion())) == false){
 
                 for ($i = 0 ; $i < count($this->getColecVagonFormacion()) ; $i++){
 

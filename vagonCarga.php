@@ -29,7 +29,8 @@
         public function __toString() {
             return parent::__toString() . 
                    "Peso máximo de carga: " . $this->pesoMaximoVagcarga . " kg\n" .
-                   "Peso de la carga: " . $this->pesoCargaVagCarga . " kg\n" ;
+                   "Peso de la carga: " . $this->pesoCargaVagCarga . " kg\n".
+                   "\nEl peso de este vagon es ". $this->calcularPesoVagon(). "kg\n" ;
         }
 
         public function incorporarCargaVagon($cantCarga){

@@ -13,10 +13,11 @@
         }
 
         public function calcularPesoVagon(){
-            $pesoBase = $this->calcularPesoVagon();
+            $pesoBase = parent::calcularPesoVagon();
             $pesoActualPasajeros = $this->getCantActualPasajerosVagon() * $this->getPesoPromedioVagon();
-            $this->setPesoActualVagon($pesoActualPasajeros + $pesoBase);
-            return $pesoBase + $pesoActualPasajeros;
+            $pesoFinal = $pesoBase + $pesoActualPasajeros;
+            $this->setPesoActualVagon($pesoFinal);
+            return $pesoFinal;
         }
 
         public function getCantMaximaPasajerosVagon() {return $this->cantMaximaPasajerosVagon;}
@@ -37,7 +38,7 @@
             $bandera = false;
             if (($cantPasajParam + $this->getCantActualPasajerosVagon()) <= $this->getCantMaximaPasajerosVagon()){
                 $this->setCantActualPasajerosVagon($this->getCantActualPasajerosVagon() + $cantPasajParam);
-                parent::setPesoActualVagon(parent::getPesoActualVagon() + ($cantPasajParam * 50));
+                $this->setPesoActualVagon(parent::calcularPesoVagon() + ($cantPasajParam * 50));
                 $bandera = true;
 
             }
@@ -55,6 +56,13 @@
 
             return $bandera;
         }
+    public function __toString() {
+    return "VagonPasajeros: Max pasajeros: " . $this->cantMaximaPasajerosVagon . 
+           ", Actual pasajeros: " . $this->cantActualPasajerosVagon . 
+           ", Peso promedio: " . $this->pesoPromedioVagon . " kg\n". 
+        "\nEl peso de este vagon es ". $this->calcularPesoVagon(). "kg\n" ;
+}
+
 
 
         
